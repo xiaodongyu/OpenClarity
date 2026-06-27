@@ -42,29 +42,40 @@ def deskew(img: np.ndarray) -> np.ndarray:
     return cv2.warpAffine(img, M, (w, h), flags=cv2.INTER_LINEAR, borderValue=255)
 
 
-def detect_orientation(img: np.ndarray) -> int:
-    """Return the clockwise rotation angle (0, 90, 180, or 270) to apply to make
-    text horizontal and upright, chosen by maximising horizontal projection-profile
-    variance on a downsampled binary image.
+def orientation_scores(img: np.ndarray) -> dict[int, float]:
+    """Return the horizontal projection-profile variance for each candidate rotation.
+
+    Keys are clockwise rotation angles (0, 90, 180, 270).  Higher variance
+    indicates that the text rows are horizontal at that rotation, so the angle
+    with the highest score is the one to apply.
+
+    Note: 0°/180° and 90°/270° pairs are mathematically guaranteed to produce
+    identical variance values (reversing row order does not change variance).
+    Use an external tiebreaker such as OCR confidence to choose between them.
     """
     gray = to_grayscale(img) if img.ndim == 3 else img
-    # Downsample to max 600 px on the longest side for speed
     h, w = gray.shape[:2]
     scale = min(1.0, 600.0 / max(h, w, 1))
     if scale < 1.0:
         gray = cv2.resize(gray, (max(1, int(w * scale)), max(1, int(h * scale))))
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     _, binary = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    return {
+        angle: float(np.var(np.sum(
+            cv2.rotate(binary, code) if code is not None else binary,
+            axis=1, dtype=np.float64,
+        )))
+        for angle, code in _ORIENT_CODES.items()
+    }
 
-    best_angle, best_var = 0, -1.0
-    for angle, code in _ORIENT_CODES.items():
-        candidate = cv2.rotate(binary, code) if code is not None else binary
-        profile = np.sum(candidate, axis=1, dtype=np.float64)
-        var = float(np.var(profile))
-        if var > best_var:
-            best_var = var
-            best_angle = angle
-    return best_angle
+
+def detect_orientation(img: np.ndarray) -> int:
+    """Return the clockwise rotation angle (0, 90, 180, or 270) to apply to make
+    text horizontal and upright, chosen by maximising horizontal projection-profile
+    variance on a downsampled binary image.
+    """
+    scores = orientation_scores(img)
+    return max(scores, key=scores.__getitem__)
 
 
 def correct_orientation(img: np.ndarray) -> np.ndarray:

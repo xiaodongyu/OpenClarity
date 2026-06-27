@@ -163,9 +163,14 @@ def _ocr_image(img_path: Path) -> tuple[str, list[dict]]:
 # ---------------------------------------------------------------------------
 
 def _annotate_image_b64(img_path: Path, tokens: list[dict]) -> str:
-    """Return a base64 JPEG with coloured bounding boxes overlaid on the image."""
+    """Return a base64 JPEG with coloured bounding boxes overlaid on the image.
+
+    The image is put through the same resize + orientation correction as the
+    OCR pipeline so that the stored bbox coordinates align with what is shown.
+    """
     import cv2
     import numpy as np
+    from src.preprocess import correct_orientation
 
     img = cv2.imread(str(img_path))
     if img is None:
@@ -176,6 +181,10 @@ def _annotate_image_b64(img_path: Path, tokens: list[dict]) -> str:
     if max(h, w) > ocr_max:
         scale = ocr_max / max(h, w)
         img = cv2.resize(img, (int(w * scale), int(h * scale)))
+
+    # Apply the same orientation correction the OCR pipeline applies so the
+    # token bounding boxes (which are in corrected-image coordinates) align.
+    img = correct_orientation(img)
 
     if tokens:
         overlay = img.copy()
