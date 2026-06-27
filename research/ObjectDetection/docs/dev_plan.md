@@ -64,9 +64,9 @@ python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 
 ---
 
-## Milestones
+## Phases
 
-### Milestone 1 — Camera Capture (`src/capture.py`)
+### Phase 1 — Camera Capture (`src/capture.py`)
 
 **Tasks**
 - Open webcam with `cv2.VideoCapture(0)`
@@ -78,7 +78,7 @@ python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 
 ---
 
-### Milestone 2 — Object Detector (`src/detector.py`)
+### Phase 2 — Object Detector (`src/detector.py`)
 
 **Tasks**
 - Load `YOLOv8n` once at module init; expose `detect(frame: np.ndarray, conf=0.5) -> list[dict]`
@@ -100,7 +100,7 @@ python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 
 ---
 
-### Milestone 3 — Priority Filter (`src/priority_filter.py`)
+### Phase 3 — Priority Filter (`src/priority_filter.py`)
 
 **Tasks**
 - Expose `top_n(detections: list[dict], n=4) -> list[dict]`
@@ -114,7 +114,7 @@ python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 
 ---
 
-### Milestone 4 — Spatial Audio (`src/spatial_audio.py`)
+### Phase 4 — Spatial Audio (`src/spatial_audio.py`)
 
 **Tasks**
 
@@ -159,7 +159,7 @@ DEFAULT_FREQ = 300  # for any class not in EARCON_FREQ
 
 ---
 
-### Milestone 5 — Main Pipeline (`src/pipeline.py`)
+### Phase 5 — Main Pipeline (`src/pipeline.py`)
 
 **Tasks**
 - Continuous loop at target 10 FPS:
@@ -177,7 +177,7 @@ DEFAULT_FREQ = 300  # for any class not in EARCON_FREQ
 
 ---
 
-### Milestone 6 — Testing & Demo Prep
+### Phase 6 — Testing & Demo Prep
 
 **Tasks**
 - `test_pipeline.py`: integration test using a fixture video (10-frame clip); verify detections are non-empty and audio `emit` is called each frame

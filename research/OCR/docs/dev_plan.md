@@ -60,9 +60,9 @@ python -c "from paddleocr import PaddleOCR; PaddleOCR(use_angle_cls=True, lang='
 
 ---
 
-## Milestones
+## Phases
 
-### Milestone 1 — Camera Capture & ROI (`src/capture.py`)
+### Phase 1 — Camera Capture & ROI (`src/capture.py`)
 
 **Tasks**
 - Open webcam with `cv2.VideoCapture(0)`
@@ -77,7 +77,7 @@ python -c "from paddleocr import PaddleOCR; PaddleOCR(use_angle_cls=True, lang='
 
 ---
 
-### Milestone 2 — Preprocessing Pipeline (`src/preprocess.py`)
+### Phase 2 — Preprocessing Pipeline (`src/preprocess.py`)
 
 **Tasks**
 - `to_grayscale(img) -> np.ndarray`
@@ -96,7 +96,7 @@ def preprocess(img):
 
 ---
 
-### Milestone 3 — OCR Engine (`src/ocr_engine.py`)
+### Phase 3 — OCR Engine (`src/ocr_engine.py`)
 
 **Tasks**
 - Initialise `PaddleOCR(use_angle_cls=True, lang='en')` once at module import (not per call)
@@ -109,7 +109,7 @@ def preprocess(img):
 
 ---
 
-### Milestone 4 — Text Formatter (`src/text_formatter.py`)
+### Phase 4 — Text Formatter (`src/text_formatter.py`)
 
 **Tasks**
 - `structure_text(tokens: list[dict]) -> str`:
@@ -125,7 +125,7 @@ def preprocess(img):
 
 ---
 
-### Milestone 5 — TTS (`src/tts.py`)
+### Phase 5 — TTS (`src/tts.py`)
 
 **Tasks**
 - Use `pyttsx3` (offline, no API cost)
@@ -137,7 +137,7 @@ def preprocess(img):
 
 ---
 
-### Milestone 6 — Main Pipeline (`src/pipeline.py`)
+### Phase 6 — Main Pipeline (`src/pipeline.py`)
 
 **Tasks**
 - On-demand mode (default): wait for user keypress (`Space`) to trigger one capture → preprocess → OCR → speak cycle
@@ -152,7 +152,7 @@ def preprocess(img):
 
 ---
 
-### Milestone 7 — Testing & Demo Prep
+### Phase 7 — Testing & Demo Prep
 
 **Tasks**
 - `test_pipeline.py`: integration test using a fixture image; verify OCR output matches expected text

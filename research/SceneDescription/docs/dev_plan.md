@@ -60,9 +60,9 @@ ELEVENLABS_API_KEY=...   # optional
 
 ---
 
-## Milestones
+## Phases
 
-### Milestone 1 — Camera Capture (`src/capture.py`)
+### Phase 1 — Camera Capture (`src/capture.py`)
 
 **Tasks**
 - Open webcam with `cv2.VideoCapture(0)`
@@ -74,7 +74,7 @@ ELEVENLABS_API_KEY=...   # optional
 
 ---
 
-### Milestone 2 — VLM API Client (`src/vlm_client.py`)
+### Phase 2 — VLM API Client (`src/vlm_client.py`)
 
 **Tasks**
 - Implement `describe_scene(image_b64: str) -> str` using Anthropic `claude-sonnet-4-6` by default
@@ -96,7 +96,7 @@ Do not say 'I see' or 'the image shows'. Speak directly."""
 
 ---
 
-### Milestone 3 — TTS Abstraction (`src/tts.py`)
+### Phase 3 — TTS Abstraction (`src/tts.py`)
 
 **Tasks**
 - Implement `speak(text: str) -> None` with two backends selectable via `TTS_BACKEND` env var:
@@ -109,7 +109,7 @@ Do not say 'I see' or 'the image shows'. Speak directly."""
 
 ---
 
-### Milestone 4 — Offline Fallback (`src/fallback.py`)
+### Phase 4 — Offline Fallback (`src/fallback.py`)
 
 **Tasks**
 - Install Ollama on Ubuntu:
@@ -125,7 +125,7 @@ Do not say 'I see' or 'the image shows'. Speak directly."""
 
 ---
 
-### Milestone 5 — Main Pipeline (`src/pipeline.py`)
+### Phase 5 — Main Pipeline (`src/pipeline.py`)
 
 **Tasks**
 - Single loop: capture → encode → describe → speak, repeating at `CAPTURE_INTERVAL_SEC`
@@ -149,7 +149,7 @@ Do not say 'I see' or 'the image shows'. Speak directly."""
 
 ---
 
-### Milestone 6 — Testing & Demo Prep
+### Phase 6 — Testing & Demo Prep
 
 **Tasks**
 - `test_pipeline.py`: integration test using mocked VLM client and TTS; verify three full cycles complete
