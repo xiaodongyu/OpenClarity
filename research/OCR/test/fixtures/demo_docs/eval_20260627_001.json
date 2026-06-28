@@ -1,0 +1,245 @@
+{
+  "fixture": "demo_docs",
+  "commit": "b8f9b31",
+  "commit_full": "b8f9b317837d168558ab39422a55bfe83072eae9",
+  "commit_subject": "[OCR] Add HTML report to eval_fixtures; regenerate artifacts at d138a2b",
+  "commit_body": "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-27T23:07:22.536290+00:00",
+  "threshold_cer": 0.3,
+  "mean_cer": 0.0589,
+  "verdict": "PASS",
+  "explanation": "All 3 images passed the 30% CER threshold. Best: doc2.png (4.5%). Worst: doc3.png (6.7%).",
+  "images": [
+    {
+      "filename": "doc1.png",
+      "expected": "OPEN HOURS 9am - 5pm Mon to Fri",
+      "recognized": "OPEN HOURS. 9am - 5pm. Mon to Fri",
+      "token_count": 3,
+      "tokens": [
+        {
+          "text": "OPEN HOURS",
+          "confidence": 0.9781,
+          "bbox": [
+            [
+              21.0,
+              30.0
+            ],
+            [
+              165.0,
+              30.0
+            ],
+            [
+              165.0,
+              52.0
+            ],
+            [
+              21.0,
+              52.0
+            ]
+          ]
+        },
+        {
+          "text": "9am - 5pm",
+          "confidence": 0.9666,
+          "bbox": [
+            [
+              20.0,
+              81.0
+            ],
+            [
+              157.0,
+              81.0
+            ],
+            [
+              157.0,
+              106.0
+            ],
+            [
+              20.0,
+              106.0
+            ]
+          ]
+        },
+        {
+          "text": "Mon to Fri",
+          "confidence": 0.9998,
+          "bbox": [
+            [
+              18.0,
+              130.0
+            ],
+            [
+              137.0,
+              128.0
+            ],
+            [
+              138.0,
+              153.0
+            ],
+            [
+              18.0,
+              155.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.0645,
+      "passed": true,
+      "elapsed_s": 0.245
+    },
+    {
+      "filename": "doc2.png",
+      "expected": "Name: John Smith ID: 12345 Dept: Engineering",
+      "recognized": "Name: John Smith. ID: 12345. Dept: Engineering",
+      "token_count": 3,
+      "tokens": [
+        {
+          "text": "Name: John Smith",
+          "confidence": 0.9803,
+          "bbox": [
+            [
+              21.0,
+              32.0
+            ],
+            [
+              224.0,
+              32.0
+            ],
+            [
+              224.0,
+              53.0
+            ],
+            [
+              21.0,
+              53.0
+            ]
+          ]
+        },
+        {
+          "text": "ID: 12345",
+          "confidence": 0.9797,
+          "bbox": [
+            [
+              19.0,
+              80.0
+            ],
+            [
+              129.0,
+              80.0
+            ],
+            [
+              129.0,
+              105.0
+            ],
+            [
+              19.0,
+              105.0
+            ]
+          ]
+        },
+        {
+          "text": "Dept: Engineering",
+          "confidence": 0.9998,
+          "bbox": [
+            [
+              21.0,
+              132.0
+            ],
+            [
+              212.0,
+              132.0
+            ],
+            [
+              212.0,
+              157.0
+            ],
+            [
+              21.0,
+              157.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.0455,
+      "passed": true,
+      "elapsed_s": 0.212
+    },
+    {
+      "filename": "doc3.png",
+      "expected": "EXIT Emergency only Keep clear",
+      "recognized": "EXIT. Emergency only. Keep clear",
+      "token_count": 3,
+      "tokens": [
+        {
+          "text": "EXIT",
+          "confidence": 0.9988,
+          "bbox": [
+            [
+              18.0,
+              29.0
+            ],
+            [
+              69.0,
+              29.0
+            ],
+            [
+              69.0,
+              57.0
+            ],
+            [
+              18.0,
+              57.0
+            ]
+          ]
+        },
+        {
+          "text": "Emergency only",
+          "confidence": 0.9996,
+          "bbox": [
+            [
+              20.0,
+              81.0
+            ],
+            [
+              193.0,
+              83.0
+            ],
+            [
+              192.0,
+              108.0
+            ],
+            [
+              20.0,
+              106.0
+            ]
+          ]
+        },
+        {
+          "text": "Keep clear",
+          "confidence": 0.9999,
+          "bbox": [
+            [
+              18.0,
+              130.0
+            ],
+            [
+              139.0,
+              132.0
+            ],
+            [
+              138.0,
+              158.0
+            ],
+            [
+              18.0,
+              156.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.0667,
+      "passed": true,
+      "elapsed_s": 0.176
+    }
+  ]
+}

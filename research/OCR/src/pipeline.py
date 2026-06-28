@@ -5,7 +5,7 @@ Usage:
     python src/pipeline.py [--continuous] [--no-tts] [--lang en]
 
 Modes:
-    default      Wait for Space keypress to trigger one capture→preprocess→OCR→speak cycle.
+    default      Wait for Space keypress to trigger one capture→OCR→speak cycle.
     --continuous Repeat automatically every CAPTURE_INTERVAL_SEC seconds (default: 3).
 
 Flags:
@@ -21,7 +21,6 @@ import cv2
 
 from src.capture import capture_frame, crop, select_roi
 from src.ocr_engine import recognize
-from src.preprocess import preprocess
 from src.text_formatter import format_for_speech, structure_text
 
 
@@ -29,8 +28,8 @@ def run_cycle(roi, no_tts: bool, lang: str) -> str:
     frame = capture_frame()
     if roi is not None:
         frame = crop(frame, roi)
-    processed = preprocess(frame)
-    tokens = recognize(processed, lang=lang)
+    # Orientation correction is applied inside recognize() before calling PaddleOCR
+    tokens = recognize(frame, lang=lang)
     text = structure_text(tokens)
     speech_text = format_for_speech(text)
 

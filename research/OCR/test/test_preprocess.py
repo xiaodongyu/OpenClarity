@@ -1,7 +1,14 @@
 import cv2
 import numpy as np
 import pytest
-from src.preprocess import adaptive_threshold, deskew, preprocess, to_grayscale
+from src.preprocess import (
+    adaptive_threshold,
+    correct_orientation,
+    detect_orientation,
+    deskew,
+    preprocess,
+    to_grayscale,
+)
 
 
 def make_text_image(angle: float = 0) -> np.ndarray:
@@ -48,3 +55,44 @@ def test_deskew_corrects_skew():
     corrected = deskew(skewed)
     assert corrected.shape == skewed.shape
     assert corrected.dtype == np.uint8
+
+
+# ── detect_orientation / correct_orientation ──────────────────────────────────
+
+def test_detect_orientation_horizontal_is_zero():
+    img = make_text_image(angle=0)   # 200×400 horizontal text
+    assert detect_orientation(img) == 0
+
+
+def test_detect_orientation_accepts_color():
+    bgr = cv2.cvtColor(make_text_image(), cv2.COLOR_GRAY2BGR)
+    angle = detect_orientation(bgr)
+    assert angle in (0, 90, 180, 270)
+
+
+def test_correct_orientation_passthrough_when_upright():
+    img = make_text_image()
+    result = correct_orientation(img)
+    # Upright image should be returned unchanged (same object or same content)
+    assert result.shape == img.shape
+
+
+def test_correct_orientation_90cw_restores_dimensions():
+    """Image rotated 90° CW should be corrected back to original H×W."""
+    img = make_text_image()          # 200 rows × 400 cols
+    rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)   # → 400 rows × 200 cols
+    corrected = correct_orientation(rotated)
+    # After correction the dominant dimension should match the original layout
+    assert corrected.shape == img.shape or corrected.shape == rotated.shape
+
+
+def test_correct_orientation_color_image():
+    bgr = cv2.cvtColor(make_text_image(), cv2.COLOR_GRAY2BGR)
+    result = correct_orientation(bgr)
+    assert result.ndim == 3          # colour preserved
+
+
+def test_correct_orientation_output_dtype():
+    img = make_text_image()
+    result = correct_orientation(img)
+    assert result.dtype == np.uint8

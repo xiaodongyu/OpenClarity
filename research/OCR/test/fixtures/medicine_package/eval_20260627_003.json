@@ -1,0 +1,443 @@
+{
+  "fixture": "medicine_package",
+  "commit": "2ae39a9",
+  "commit_full": "2ae39a99f56fe8f786296940e7a12e9bed47dce3",
+  "commit_subject": "[OCR] Date-sequenced eval filenames; embed commit hash and message in artifacts",
+  "commit_body": "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-27T23:20:33.295557+00:00",
+  "threshold_cer": 0.3,
+  "mean_cer": 0.4481,
+  "verdict": "NEEDS IMPROVEMENT",
+  "explanation": "Mean CER 44.8% exceeds the 30% threshold. Failed: IMG_4256.JPG (45.9%), IMG_4257.JPG (84.2%). Passed: IMG_4255.JPG (4.3%). Failure mode(s): high CER despite tokens detected \u2014 likely reading-order errors on curved/rotated surfaces (IMG_4257.JPG); partial recognition \u2014 tokens missing or substituted (IMG_4256.JPG).",
+  "images": [
+    {
+      "filename": "IMG_4255.JPG",
+      "expected": "Walgreens Sleep Aid DIPHENHYDRAMINE HCI 25MG / NIGHTTIME SLEEP AID nighttime 100 MINI CAPLETS",
+      "recognized": "Walgreens. Sleep Aid DIPHENHYDRAMINE HCI 25 mg/ NIGHTTIME SLEEP AID Nighttime. 100 MINI CAPLETS",
+      "token_count": 7,
+      "tokens": [
+        {
+          "text": "Walgreens",
+          "confidence": 0.9918,
+          "bbox": [
+            [
+              441.0,
+              862.0
+            ],
+            [
+              747.0,
+              874.0
+            ],
+            [
+              744.0,
+              940.0
+            ],
+            [
+              438.0,
+              928.0
+            ]
+          ]
+        },
+        {
+          "text": "Sleep Aid",
+          "confidence": 0.9725,
+          "bbox": [
+            [
+              436.0,
+              974.0
+            ],
+            [
+              827.0,
+              982.0
+            ],
+            [
+              825.0,
+              1076.0
+            ],
+            [
+              434.0,
+              1068.0
+            ]
+          ]
+        },
+        {
+          "text": "DIPHENHYDRAMINE HCI 25 mg/",
+          "confidence": 0.9126,
+          "bbox": [
+            [
+              440.0,
+              1072.0
+            ],
+            [
+              740.0,
+              1084.0
+            ],
+            [
+              738.0,
+              1125.0
+            ],
+            [
+              438.0,
+              1114.0
+            ]
+          ]
+        },
+        {
+          "text": "NIGHTTIME SLEEP AID",
+          "confidence": 0.9174,
+          "bbox": [
+            [
+              440.0,
+              1106.0
+            ],
+            [
+              644.0,
+              1117.0
+            ],
+            [
+              642.0,
+              1155.0
+            ],
+            [
+              438.0,
+              1143.0
+            ]
+          ]
+        },
+        {
+          "text": "Nighttime",
+          "confidence": 0.996,
+          "bbox": [
+            [
+              456.0,
+              1149.0
+            ],
+            [
+              608.0,
+              1159.0
+            ],
+            [
+              606.0,
+              1197.0
+            ],
+            [
+              453.0,
+              1187.0
+            ]
+          ]
+        },
+        {
+          "text": "100",
+          "confidence": 0.9994,
+          "bbox": [
+            [
+              436.0,
+              1234.0
+            ],
+            [
+              566.0,
+              1245.0
+            ],
+            [
+              560.0,
+              1310.0
+            ],
+            [
+              430.0,
+              1299.0
+            ]
+          ]
+        },
+        {
+          "text": "MINI CAPLETS",
+          "confidence": 0.968,
+          "bbox": [
+            [
+              560.0,
+              1261.0
+            ],
+            [
+              777.0,
+              1256.0
+            ],
+            [
+              778.0,
+              1308.0
+            ],
+            [
+              561.0,
+              1313.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.043,
+      "passed": true,
+      "elapsed_s": 1.432
+    },
+    {
+      "filename": "IMG_4256.JPG",
+      "expected": "Triamcinolone Acetonide Ointment USP, For External Use Only Not For Ophthalmic Use Net Wt 80 grams",
+      "recognized": "For External Use Only Triamcinolone Acetonide Ointment USP,. Not For Ophthalmic Use. Net Wt 80 grams",
+      "token_count": 6,
+      "tokens": [
+        {
+          "text": "Triamcinolone Acetonide",
+          "confidence": 0.9914,
+          "bbox": [
+            [
+              566.0,
+              728.0
+            ],
+            [
+              1482.0,
+              755.0
+            ],
+            [
+              1480.0,
+              819.0
+            ],
+            [
+              564.0,
+              792.0
+            ]
+          ]
+        },
+        {
+          "text": " Ointment",
+          "confidence": 0.9424,
+          "bbox": [
+            [
+              1459.0,
+              757.0
+            ],
+            [
+              1814.0,
+              785.0
+            ],
+            [
+              1809.0,
+              845.0
+            ],
+            [
+              1455.0,
+              817.0
+            ]
+          ]
+        },
+        {
+          "text": "USP,",
+          "confidence": 0.9891,
+          "bbox": [
+            [
+              1846.0,
+              773.0
+            ],
+            [
+              1999.0,
+              793.0
+            ],
+            [
+              1992.0,
+              863.0
+            ],
+            [
+              1837.0,
+              843.0
+            ]
+          ]
+        },
+        {
+          "text": "For External Use Only",
+          "confidence": 0.9503,
+          "bbox": [
+            [
+              543.0,
+              867.0
+            ],
+            [
+              1151.0,
+              889.0
+            ],
+            [
+              1149.0,
+              940.0
+            ],
+            [
+              541.0,
+              918.0
+            ]
+          ]
+        },
+        {
+          "text": "Not For Ophthalmic Use",
+          "confidence": 0.9989,
+          "bbox": [
+            [
+              542.0,
+              980.0
+            ],
+            [
+              1209.0,
+              998.0
+            ],
+            [
+              1208.0,
+              1047.0
+            ],
+            [
+              541.0,
+              1029.0
+            ]
+          ]
+        },
+        {
+          "text": "Net Wt 80 grams",
+          "confidence": 0.9306,
+          "bbox": [
+            [
+              554.0,
+              1058.0
+            ],
+            [
+              997.0,
+              1090.0
+            ],
+            [
+              994.0,
+              1126.0
+            ],
+            [
+              551.0,
+              1094.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.4592,
+      "passed": false,
+      "elapsed_s": 1.772
+    },
+    {
+      "filename": "IMG_4257.JPG",
+      "expected": "Clobetasol Propionate Ointment USP, 0.05% Net WT 60 grams",
+      "recognized": "NDC21922-017-07. Clobetasol Propionate NETWT 60 grams Ointment) USP,0.05%",
+      "token_count": 5,
+      "tokens": [
+        {
+          "text": "NDC21922-017-07",
+          "confidence": 0.9805,
+          "bbox": [
+            [
+              700.0,
+              624.0
+            ],
+            [
+              1042.0,
+              629.0
+            ],
+            [
+              1041.0,
+              671.0
+            ],
+            [
+              700.0,
+              667.0
+            ]
+          ]
+        },
+        {
+          "text": "Clobetasol Propionate",
+          "confidence": 0.9756,
+          "bbox": [
+            [
+              687.0,
+              703.0
+            ],
+            [
+              1704.0,
+              769.0
+            ],
+            [
+              1698.0,
+              871.0
+            ],
+            [
+              681.0,
+              806.0
+            ]
+          ]
+        },
+        {
+          "text": "Ointment)",
+          "confidence": 0.9732,
+          "bbox": [
+            [
+              704.0,
+              861.0
+            ],
+            [
+              1157.0,
+              854.0
+            ],
+            [
+              1159.0,
+              941.0
+            ],
+            [
+              705.0,
+              949.0
+            ]
+          ]
+        },
+        {
+          "text": "USP,0.05%",
+          "confidence": 0.949,
+          "bbox": [
+            [
+              1167.0,
+              858.0
+            ],
+            [
+              1699.0,
+              911.0
+            ],
+            [
+              1689.0,
+              1013.0
+            ],
+            [
+              1158.0,
+              960.0
+            ]
+          ]
+        },
+        {
+          "text": "NETWT 60 grams",
+          "confidence": 0.9134,
+          "bbox": [
+            [
+              695.0,
+              1003.0
+            ],
+            [
+              1142.0,
+              1017.0
+            ],
+            [
+              1141.0,
+              1061.0
+            ],
+            [
+              693.0,
+              1048.0
+            ]
+          ]
+        }
+      ],
+      "cer": 0.8421,
+      "passed": false,
+      "elapsed_s": 1.201
+    }
+  ]
+}

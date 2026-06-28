@@ -1,0 +1,545 @@
+{
+  "fixture": "book_cover",
+  "commit": "8f10412",
+  "commit_full": "8f1041207f4e08a7df1f23c5e742bbfebfd81bbe",
+  "commit_subject": "Update OCR algorithm README and eval HTML summary metric",
+  "commit_body": "- Document the two-phase orientation detection: variance scoring +\n  OCR-confidence tiebreaker (cls=False for 0\u00b0/180\u00b0, cls=True for 90\u00b0/270\u00b0)\n- Document key-phrase recall evaluation mode (Mode B) alongside CER (Mode A)\n- Note that the HTML summary now shows pass/fail count, not mean CER\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-28T01:32:31.439316+00:00",
+  "threshold_cer": 0.3,
+  "mean_cer": 2.5324,
+  "verdict": "NEEDS IMPROVEMENT",
+  "explanation": "Failed: IMG_4259.JPG (recall 0%), IMG_4260.JPG (recall 50%). Passed: IMG_4258.JPG (recall 100%). Failure mode(s): key phrases missing from output (IMG_4259.JPG, IMG_4260.JPG).",
+  "images": [
+    {
+      "filename": "IMG_4258.JPG",
+      "expected": "MICHAEL CRICHTON | STATE OF FEAR",
+      "recognized": "NEW YORK TIMES BESTSELLER. MICHAEL. CRICHTON. \"EDGE-OF-YOUR-SEAT STORYTELLING.\" USA Today. BESTSELLER, NEXT CRICHTON'S DON'T MISS NEWEST. STATEOFFEAR",
+      "token_count": 11,
+      "tokens": [
+        {
+          "text": "NEW YORK TIMES BESTSELLER",
+          "confidence": 0.9668,
+          "bbox": [
+            [
+              381.0,
+              690.0
+            ],
+            [
+              895.0,
+              687.0
+            ],
+            [
+              895.0,
+              717.0
+            ],
+            [
+              381.0,
+              719.0
+            ]
+          ]
+        },
+        {
+          "text": "MICHAEL",
+          "confidence": 0.996,
+          "bbox": [
+            [
+              369.0,
+              731.0
+            ],
+            [
+              929.0,
+              731.0
+            ],
+            [
+              929.0,
+              885.0
+            ],
+            [
+              369.0,
+              885.0
+            ]
+          ]
+        },
+        {
+          "text": "CRICHTON",
+          "confidence": 0.9957,
+          "bbox": [
+            [
+              351.0,
+              915.0
+            ],
+            [
+              943.0,
+              910.0
+            ],
+            [
+              944.0,
+              1089.0
+            ],
+            [
+              353.0,
+              1094.0
+            ]
+          ]
+        },
+        {
+          "text": "\"EDGE-OF-YOUR-SEAT STORYTELLING.\"",
+          "confidence": 0.9865,
+          "bbox": [
+            [
+              403.0,
+              1117.0
+            ],
+            [
+              907.0,
+              1108.0
+            ],
+            [
+              908.0,
+              1137.0
+            ],
+            [
+              403.0,
+              1146.0
+            ]
+          ]
+        },
+        {
+          "text": "USA Today",
+          "confidence": 0.9833,
+          "bbox": [
+            [
+              601.0,
+              1150.0
+            ],
+            [
+              722.0,
+              1150.0
+            ],
+            [
+              722.0,
+              1173.0
+            ],
+            [
+              601.0,
+              1173.0
+            ]
+          ]
+        },
+        {
+          "text": "DON'T MISS",
+          "confidence": 0.9443,
+          "bbox": [
+            [
+              398.0,
+              1196.0
+            ],
+            [
+              507.0,
+              1196.0
+            ],
+            [
+              507.0,
+              1219.0
+            ],
+            [
+              398.0,
+              1219.0
+            ]
+          ]
+        },
+        {
+          "text": "CRICHTON'S",
+          "confidence": 0.9824,
+          "bbox": [
+            [
+              392.0,
+              1217.0
+            ],
+            [
+              508.0,
+              1212.0
+            ],
+            [
+              510.0,
+              1241.0
+            ],
+            [
+              393.0,
+              1246.0
+            ]
+          ]
+        },
+        {
+          "text": "NEWEST",
+          "confidence": 0.9953,
+          "bbox": [
+            [
+              409.0,
+              1242.0
+            ],
+            [
+              498.0,
+              1237.0
+            ],
+            [
+              499.0,
+              1258.0
+            ],
+            [
+              410.0,
+              1263.0
+            ]
+          ]
+        },
+        {
+          "text": "BESTSELLER,",
+          "confidence": 0.9948,
+          "bbox": [
+            [
+              387.0,
+              1259.0
+            ],
+            [
+              511.0,
+              1254.0
+            ],
+            [
+              512.0,
+              1283.0
+            ],
+            [
+              389.0,
+              1288.0
+            ]
+          ]
+        },
+        {
+          "text": "NEXT",
+          "confidence": 0.9972,
+          "bbox": [
+            [
+              390.0,
+              1283.0
+            ],
+            [
+              511.0,
+              1283.0
+            ],
+            [
+              511.0,
+              1335.0
+            ],
+            [
+              390.0,
+              1335.0
+            ]
+          ]
+        },
+        {
+          "text": "STATEOFFEAR",
+          "confidence": 0.9886,
+          "bbox": [
+            [
+              321.0,
+              1389.0
+            ],
+            [
+              975.0,
+              1368.0
+            ],
+            [
+              979.0,
+              1476.0
+            ],
+            [
+              324.0,
+              1497.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 3.6875,
+      "elapsed_s": 3.895,
+      "kp_recall": 1.0,
+      "kp_phrases": [
+        {
+          "phrase": "MICHAEL CRICHTON",
+          "found": true
+        },
+        {
+          "phrase": "STATE OF FEAR",
+          "found": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "filename": "IMG_4259.JPG",
+      "expected": "ROBIN COOK | VECTOR",
+      "recognized": "THE NEW YORK TIMES BESTSELLER",
+      "token_count": 1,
+      "tokens": [
+        {
+          "text": "THE NEW YORK TIMES BESTSELLER",
+          "confidence": 0.9858,
+          "bbox": [
+            [
+              425.0,
+              514.0
+            ],
+            [
+              467.0,
+              513.0
+            ],
+            [
+              469.0,
+              925.0
+            ],
+            [
+              427.0,
+              925.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 1.0526,
+      "elapsed_s": 0.928,
+      "kp_recall": 0.0,
+      "kp_phrases": [
+        {
+          "phrase": "ROBIN COOK",
+          "found": false
+        },
+        {
+          "phrase": "VECTOR",
+          "found": false
+        }
+      ],
+      "passed": false
+    },
+    {
+      "filename": "IMG_4260.JPG",
+      "expected": "DAVID MORRELL | DOUBLE IMAGE",
+      "recognized": "-DeanKoontz INVENTIVE,AND GRIPPING. LEAVES YOU DAZZLED. RESH WARNER VISION MORRELL DAVID New York",
+      "token_count": 9,
+      "tokens": [
+        {
+          "text": "WARNER",
+          "confidence": 0.9965,
+          "bbox": [
+            [
+              543.0,
+              442.0
+            ],
+            [
+              622.0,
+              453.0
+            ],
+            [
+              619.0,
+              474.0
+            ],
+            [
+              541.0,
+              464.0
+            ]
+          ]
+        },
+        {
+          "text": "VISION",
+          "confidence": 0.9752,
+          "bbox": [
+            [
+              643.0,
+              449.0
+            ],
+            [
+              713.0,
+              457.0
+            ],
+            [
+              711.0,
+              480.0
+            ],
+            [
+              641.0,
+              472.0
+            ]
+          ]
+        },
+        {
+          "text": "LEAVES YOU DAZZLED.",
+          "confidence": 0.9426,
+          "bbox": [
+            [
+              479.0,
+              486.0
+            ],
+            [
+              506.0,
+              486.0
+            ],
+            [
+              506.0,
+              705.0
+            ],
+            [
+              479.0,
+              705.0
+            ]
+          ]
+        },
+        {
+          "text": "MORRELL",
+          "confidence": 0.8886,
+          "bbox": [
+            [
+              1083.0,
+              496.0
+            ],
+            [
+              1231.0,
+              504.0
+            ],
+            [
+              1206.0,
+              1008.0
+            ],
+            [
+              1058.0,
+              1000.0
+            ]
+          ]
+        },
+        {
+          "text": "New York ",
+          "confidence": 0.9317,
+          "bbox": [
+            [
+              1344.0,
+              511.0
+            ],
+            [
+              1373.0,
+              511.0
+            ],
+            [
+              1373.0,
+              612.0
+            ],
+            [
+              1344.0,
+              612.0
+            ]
+          ]
+        },
+        {
+          "text": "DAVID",
+          "confidence": 0.8767,
+          "bbox": [
+            [
+              1218.0,
+              602.0
+            ],
+            [
+              1335.0,
+              606.0
+            ],
+            [
+              1322.0,
+              943.0
+            ],
+            [
+              1205.0,
+              938.0
+            ]
+          ]
+        },
+        {
+          "text": "-DeanKoontz",
+          "confidence": 0.9748,
+          "bbox": [
+            [
+              446.0,
+              718.0
+            ],
+            [
+              467.0,
+              718.0
+            ],
+            [
+              467.0,
+              861.0
+            ],
+            [
+              446.0,
+              861.0
+            ]
+          ]
+        },
+        {
+          "text": "RESH",
+          "confidence": 0.9377,
+          "bbox": [
+            [
+              483.0,
+              729.0
+            ],
+            [
+              498.0,
+              729.0
+            ],
+            [
+              498.0,
+              786.0
+            ],
+            [
+              483.0,
+              786.0
+            ]
+          ]
+        },
+        {
+          "text": "INVENTIVE,AND GRIPPING.",
+          "confidence": 0.9493,
+          "bbox": [
+            [
+              475.0,
+              799.0
+            ],
+            [
+              504.0,
+              799.0
+            ],
+            [
+              500.0,
+              1057.0
+            ],
+            [
+              471.0,
+              1057.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 2.8571,
+      "elapsed_s": 1.438,
+      "kp_recall": 0.5,
+      "kp_phrases": [
+        {
+          "phrase": "DAVID MORRELL",
+          "found": true
+        },
+        {
+          "phrase": "DOUBLE IMAGE",
+          "found": false
+        }
+      ],
+      "passed": false
+    }
+  ]
+}
