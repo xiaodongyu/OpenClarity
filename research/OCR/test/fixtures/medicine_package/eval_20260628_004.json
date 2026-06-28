@@ -1,0 +1,479 @@
+{
+  "fixture": "medicine_package",
+  "commit": "8f10412",
+  "commit_full": "8f1041207f4e08a7df1f23c5e742bbfebfd81bbe",
+  "commit_subject": "Update OCR algorithm README and eval HTML summary metric",
+  "commit_body": "- Document the two-phase orientation detection: variance scoring +\n  OCR-confidence tiebreaker (cls=False for 0\u00b0/180\u00b0, cls=True for 90\u00b0/270\u00b0)\n- Document key-phrase recall evaluation mode (Mode B) alongside CER (Mode A)\n- Note that the HTML summary now shows pass/fail count, not mean CER\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-28T01:32:51.366203+00:00",
+  "threshold_cer": 0.3,
+  "mean_cer": 2.2133,
+  "verdict": "PASS",
+  "explanation": "All 3 images passed. IMG_4255.JPG: recall 100%. IMG_4256.JPG: recall 100%. IMG_4257.JPG: recall 100%.",
+  "images": [
+    {
+      "filename": "IMG_4255.JPG",
+      "expected": "Walgreens | Sleep Aid",
+      "recognized": "Walgreens. Sleep Aid DIPHENHYDRAMINE HCI 25 mg/ NIGHTTIME SLEEP AID Nighttime. 100 MINI CAPLETS",
+      "token_count": 7,
+      "tokens": [
+        {
+          "text": "Walgreens",
+          "confidence": 0.9918,
+          "bbox": [
+            [
+              441.0,
+              862.0
+            ],
+            [
+              747.0,
+              874.0
+            ],
+            [
+              744.0,
+              940.0
+            ],
+            [
+              438.0,
+              928.0
+            ]
+          ]
+        },
+        {
+          "text": "Sleep Aid",
+          "confidence": 0.9725,
+          "bbox": [
+            [
+              436.0,
+              974.0
+            ],
+            [
+              827.0,
+              982.0
+            ],
+            [
+              825.0,
+              1076.0
+            ],
+            [
+              434.0,
+              1068.0
+            ]
+          ]
+        },
+        {
+          "text": "DIPHENHYDRAMINE HCI 25 mg/",
+          "confidence": 0.9126,
+          "bbox": [
+            [
+              440.0,
+              1072.0
+            ],
+            [
+              740.0,
+              1084.0
+            ],
+            [
+              738.0,
+              1125.0
+            ],
+            [
+              438.0,
+              1114.0
+            ]
+          ]
+        },
+        {
+          "text": "NIGHTTIME SLEEP AID",
+          "confidence": 0.9174,
+          "bbox": [
+            [
+              440.0,
+              1106.0
+            ],
+            [
+              644.0,
+              1117.0
+            ],
+            [
+              642.0,
+              1155.0
+            ],
+            [
+              438.0,
+              1143.0
+            ]
+          ]
+        },
+        {
+          "text": "Nighttime",
+          "confidence": 0.996,
+          "bbox": [
+            [
+              456.0,
+              1149.0
+            ],
+            [
+              608.0,
+              1159.0
+            ],
+            [
+              606.0,
+              1197.0
+            ],
+            [
+              453.0,
+              1187.0
+            ]
+          ]
+        },
+        {
+          "text": "100",
+          "confidence": 0.9994,
+          "bbox": [
+            [
+              436.0,
+              1234.0
+            ],
+            [
+              566.0,
+              1245.0
+            ],
+            [
+              560.0,
+              1310.0
+            ],
+            [
+              430.0,
+              1299.0
+            ]
+          ]
+        },
+        {
+          "text": "MINI CAPLETS",
+          "confidence": 0.968,
+          "bbox": [
+            [
+              560.0,
+              1261.0
+            ],
+            [
+              777.0,
+              1256.0
+            ],
+            [
+              778.0,
+              1308.0
+            ],
+            [
+              561.0,
+              1313.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 3.5238,
+      "elapsed_s": 1.606,
+      "kp_recall": 1.0,
+      "kp_phrases": [
+        {
+          "phrase": "Walgreens",
+          "found": true
+        },
+        {
+          "phrase": "Sleep Aid",
+          "found": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "filename": "IMG_4256.JPG",
+      "expected": "Triamcinolone Acetonide | Ointment",
+      "recognized": "Not For Ophthalmic Use Net Wt 80 arams. USP, Ointment Triamcinolone Acetonide For External Use Only",
+      "token_count": 6,
+      "tokens": [
+        {
+          "text": "Net Wt 80 arams",
+          "confidence": 0.9563,
+          "bbox": [
+            [
+              1006.0,
+              368.0
+            ],
+            [
+              1447.0,
+              401.0
+            ],
+            [
+              1444.0,
+              440.0
+            ],
+            [
+              1003.0,
+              406.0
+            ]
+          ]
+        },
+        {
+          "text": "Not For Ophthalmic Use",
+          "confidence": 0.9991,
+          "bbox": [
+            [
+              790.0,
+              449.0
+            ],
+            [
+              1459.0,
+              467.0
+            ],
+            [
+              1458.0,
+              516.0
+            ],
+            [
+              789.0,
+              498.0
+            ]
+          ]
+        },
+        {
+          "text": "For External Use Only",
+          "confidence": 0.9678,
+          "bbox": [
+            [
+              845.0,
+              551.0
+            ],
+            [
+              1461.0,
+              576.0
+            ],
+            [
+              1459.0,
+              634.0
+            ],
+            [
+              843.0,
+              609.0
+            ]
+          ]
+        },
+        {
+          "text": "USP,",
+          "confidence": 0.9777,
+          "bbox": [
+            [
+              8.0,
+              633.0
+            ],
+            [
+              160.0,
+              645.0
+            ],
+            [
+              155.0,
+              717.0
+            ],
+            [
+              2.0,
+              706.0
+            ]
+          ]
+        },
+        {
+          "text": "Ointment",
+          "confidence": 0.9967,
+          "bbox": [
+            [
+              187.0,
+              651.0
+            ],
+            [
+              516.0,
+              677.0
+            ],
+            [
+              511.0,
+              736.0
+            ],
+            [
+              182.0,
+              710.0
+            ]
+          ]
+        },
+        {
+          "text": "Triamcinolone Acetonide",
+          "confidence": 0.9903,
+          "bbox": [
+            [
+              524.0,
+              675.0
+            ],
+            [
+              1434.0,
+              702.0
+            ],
+            [
+              1432.0,
+              765.0
+            ],
+            [
+              522.0,
+              739.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 2.0882,
+      "elapsed_s": 2.02,
+      "kp_recall": 1.0,
+      "kp_phrases": [
+        {
+          "phrase": "Triamcinolone Acetonide",
+          "found": true
+        },
+        {
+          "phrase": "Ointment",
+          "found": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "filename": "IMG_4257.JPG",
+      "expected": "Clobetasol Propionate | Ointment USP",
+      "recognized": "NDC21922-017-07. Clobetasol Propionate NETWT 60 grams Ointment) USP,0.05%",
+      "token_count": 5,
+      "tokens": [
+        {
+          "text": "NDC21922-017-07",
+          "confidence": 0.9805,
+          "bbox": [
+            [
+              700.0,
+              624.0
+            ],
+            [
+              1042.0,
+              629.0
+            ],
+            [
+              1041.0,
+              671.0
+            ],
+            [
+              700.0,
+              667.0
+            ]
+          ]
+        },
+        {
+          "text": "Clobetasol Propionate",
+          "confidence": 0.9756,
+          "bbox": [
+            [
+              687.0,
+              703.0
+            ],
+            [
+              1704.0,
+              769.0
+            ],
+            [
+              1698.0,
+              871.0
+            ],
+            [
+              681.0,
+              806.0
+            ]
+          ]
+        },
+        {
+          "text": "Ointment)",
+          "confidence": 0.9732,
+          "bbox": [
+            [
+              704.0,
+              861.0
+            ],
+            [
+              1157.0,
+              854.0
+            ],
+            [
+              1159.0,
+              941.0
+            ],
+            [
+              705.0,
+              949.0
+            ]
+          ]
+        },
+        {
+          "text": "USP,0.05%",
+          "confidence": 0.949,
+          "bbox": [
+            [
+              1167.0,
+              858.0
+            ],
+            [
+              1699.0,
+              911.0
+            ],
+            [
+              1689.0,
+              1013.0
+            ],
+            [
+              1158.0,
+              960.0
+            ]
+          ]
+        },
+        {
+          "text": "NETWT 60 grams",
+          "confidence": 0.9134,
+          "bbox": [
+            [
+              695.0,
+              1003.0
+            ],
+            [
+              1142.0,
+              1017.0
+            ],
+            [
+              1141.0,
+              1061.0
+            ],
+            [
+              693.0,
+              1048.0
+            ]
+          ]
+        }
+      ],
+      "mode": "key_phrase",
+      "cer": 1.0278,
+      "elapsed_s": 1.279,
+      "kp_recall": 1.0,
+      "kp_phrases": [
+        {
+          "phrase": "Clobetasol Propionate",
+          "found": true
+        },
+        {
+          "phrase": "Ointment USP",
+          "found": true
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

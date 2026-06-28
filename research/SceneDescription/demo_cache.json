@@ -1,0 +1,7 @@
+[
+  {"scene": "indoor_convention", "response": "You are in a large conference hall with people walking between exhibition booths on either side."},
+  {"scene": "outdoor_street", "response": "A busy city street with pedestrians on the pavement and traffic moving ahead."},
+  {"scene": "office_corridor", "response": "A quiet office corridor with doors on both sides and an exit sign at the far end."},
+  {"scene": "cafe_counter", "response": "A cafe counter with a menu board overhead and a barista standing behind the till."},
+  {"scene": "parking_lot", "response": "An open parking lot with cars parked in rows and a pedestrian walkway marked in yellow on the left."}
+]

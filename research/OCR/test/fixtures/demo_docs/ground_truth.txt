@@ -1,0 +1,3 @@
+doc1.png: OPEN HOURS 9am - 5pm Mon to Fri
+doc2.png: Name: John Smith ID: 12345 Dept: Engineering
+doc3.png: EXIT Emergency only Keep clear
