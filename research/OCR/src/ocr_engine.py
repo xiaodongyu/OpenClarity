@@ -21,12 +21,19 @@ def _get_ocr(lang: str = "en") -> Any:
 def _resolve_rotation_ambiguity(img: np.ndarray, angle_a: int, angle_b: int) -> int:
     """Choose between two 180°-apart orientations using OCR confidence as tiebreaker.
 
-    Run a fast, downsampled OCR pass *without* the angle classifier on each
-    candidate.  When text is right-side-up the recogniser returns high
-    confidence; when it is 180° inverted the confidence drops sharply.
-    The angle with the higher total confidence wins.
+    For 0°/180° pairs: run with cls=False so that inverted text scores near-zero
+    and upright text wins cleanly.
+
+    For 90°/270° pairs: run with cls=True so that the angle classifier can recover
+    text that appears upside-down after rotation (e.g. a horizontal banner visible
+    at both rotations), giving a more reliable confidence signal for which physical
+    face of the subject is up.
     """
     from src.preprocess import _ORIENT_CODES
+
+    # 0°/180° pair → cls=False (inverted text unreadable without correction)
+    # 90°/270° pair → cls=True  (angle classifier needed to read flipped incidental text)
+    use_cls = angle_a in (90, 270)
 
     ocr = _get_ocr()
     best_angle, best_score = angle_a, -1.0
@@ -44,7 +51,7 @@ def _resolve_rotation_ambiguity(img: np.ndarray, angle_a: int, angle_b: int) -> 
             candidate = cv2.cvtColor(candidate, cv2.COLOR_GRAY2BGR)
 
         try:
-            raw = ocr.ocr(candidate, cls=False)  # no angle correction → inverted text scores low
+            raw = ocr.ocr(candidate, cls=use_cls)
         except Exception:
             continue
 
