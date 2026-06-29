@@ -34,8 +34,8 @@ FIXTURE_DIR = _PROJECT_ROOT / "test" / "fixtures" / "home_scene"
 PROMPTS_FILE = FIXTURE_DIR / "object_detection_prompt.txt"
 GROUNDTRUTH_FILE = FIXTURE_DIR / "object_detection_groundtruth.txt"
 
-_GRID_COLOR = (200, 200, 200)   # BGR light grey
-_BBOX_COLOR = (0, 200, 80)      # BGR green
+_GRID_COLOR = (80, 80, 255)     # BGR bright orange-red
+_BBOX_COLOR = (0, 220, 0)       # BGR bright green
 _MISS_COLOR = (0, 60, 255)      # BGR red (no detection)
 _LABEL_BG   = (0, 0, 0)
 _LABEL_FG   = (255, 255, 255)
@@ -87,13 +87,13 @@ def _annotate(image_path: Path, result: QueryResult) -> bytes:
     for i in (1, 2):
         x = w * i // 3
         y = h * i // 3
-        cv2.line(img, (x, 0), (x, h - 1), _GRID_COLOR, 1, cv2.LINE_AA)
-        cv2.line(img, (0, y), (w - 1, y), _GRID_COLOR, 1, cv2.LINE_AA)
+        cv2.line(img, (x, 0), (x, h - 1), _GRID_COLOR, 4, cv2.LINE_AA)
+        cv2.line(img, (0, y), (w - 1, y), _GRID_COLOR, 4, cv2.LINE_AA)
 
     if result.bbox is not None:
         x1, y1, x2, y2 = result.bbox
         color = _BBOX_COLOR if result.is_correct else _MISS_COLOR
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, 6)
 
         label = result.predicted_location
         font = cv2.FONT_HERSHEY_SIMPLEX
