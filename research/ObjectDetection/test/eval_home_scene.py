@@ -34,9 +34,9 @@ FIXTURE_DIR = _PROJECT_ROOT / "test" / "fixtures" / "home_scene"
 PROMPTS_FILE = FIXTURE_DIR / "object_detection_prompt.txt"
 GROUNDTRUTH_FILE = FIXTURE_DIR / "object_detection_groundtruth.txt"
 
-_GRID_COLOR = (80, 80, 255)     # BGR bright orange-red
-_BBOX_COLOR = (0, 220, 0)       # BGR bright green
-_MISS_COLOR = (0, 60, 255)      # BGR red (no detection)
+_GRID_COLOR = (255, 255, 0)     # BGR cyan — scene divider
+_BBOX_COLOR = (0, 220, 0)       # BGR green — correct match
+_MISS_COLOR = (0, 0, 255)       # BGR red — wrong/no detection
 _LABEL_BG   = (0, 0, 0)
 _LABEL_FG   = (255, 255, 255)
 
