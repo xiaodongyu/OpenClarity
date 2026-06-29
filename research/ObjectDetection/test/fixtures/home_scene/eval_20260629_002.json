@@ -1,0 +1,99 @@
+{
+  "fixture": "home_scene",
+  "commit": "043d8c3",
+  "commit_full": "043d8c361b4a516c8335cba96daf5f1a926fa829",
+  "commit_subject": "[eval] ObjectDetection home_scene \u2014 tested at 1faff73",
+  "commit_body": "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-29T02:06:41.290944+00:00",
+  "total": 6,
+  "correct": 3,
+  "accuracy": 0.5,
+  "verdict": "NEEDS IMPROVEMENT",
+  "images": [
+    {
+      "image_name": "IMG_4269.JPG",
+      "prompt": "where is the cup?",
+      "target_label": "cup",
+      "predicted_location": "middle-left",
+      "expected_location": "middle-left",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        588,
+        1615,
+        1208,
+        2331
+      ]
+    },
+    {
+      "image_name": "IMG_4269.JPG",
+      "prompt": "where is the toothbrush?",
+      "target_label": "toothbrush",
+      "predicted_location": "N/A",
+      "expected_location": "middle-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": null
+    },
+    {
+      "image_name": "IMG_4270.JPG",
+      "prompt": "where is the laptop?",
+      "target_label": "laptop",
+      "predicted_location": "bottom-right",
+      "expected_location": "bottom-right",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        2212,
+        1398,
+        3622,
+        2859
+      ]
+    },
+    {
+      "image_name": "IMG_4271.JPG",
+      "prompt": "where is the chair?",
+      "target_label": "chair",
+      "predicted_location": "middle-right",
+      "expected_location": "bottom-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": [
+        1958,
+        362,
+        3698,
+        2993
+      ]
+    },
+    {
+      "image_name": "IMG_4272.JPG",
+      "prompt": "where is the chair?",
+      "target_label": "chair",
+      "predicted_location": "middle-right",
+      "expected_location": "bottom-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": [
+        1626,
+        101,
+        3810,
+        3008
+      ]
+    },
+    {
+      "image_name": "IMG_4272.JPG",
+      "prompt": "where is the laptop?",
+      "target_label": "laptop",
+      "predicted_location": "top-left",
+      "expected_location": "top-left",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        91,
+        404,
+        1431,
+        1437
+      ]
+    }
+  ]
+}

@@ -20,7 +20,7 @@ def _get_model() -> YOLO:
 def detect(frame, conf: float = 0.5) -> list[dict]:
     model = _get_model()
     t0 = time.perf_counter()
-    results = model(frame, conf=conf, verbose=False)
+    results = model(frame, conf=conf, verbose=False, device="cpu")
     elapsed_ms = (time.perf_counter() - t0) * 1000
     print(f"inference: {elapsed_ms:.1f} ms", file=sys.stderr)
 

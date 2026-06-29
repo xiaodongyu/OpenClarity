@@ -3,6 +3,22 @@
 Detects objects in a live webcam stream and conveys their identity and position
 through stereo audio tones (earcons) — no screen required.
 
+For prompt-conditioned evaluation, the baseline task is:
+
+```text
+Input:  "where is the {object}?"
+Output: one of {top,middle,bottom}-{left,middle,right}, or N/A
+```
+
+The baseline policy is intentionally simple:
+- If `{object}` maps to a YOLOv8n COCO class, run detection and keep only that
+  class.
+- If one or more matches are found, return the location bucket of the
+  highest-confidence match.
+- If no match is found, return `N/A`.
+- If the prompt object is outside the supported YOLO baseline vocabulary,
+  return `N/A`.
+
 ```
 capture_frame → detect (YOLOv8n) → priority_filter → spatial_audio.emit
 ```
@@ -43,6 +59,9 @@ top_n(detections, n=4)  # configurable via MAX_DETECTIONS env var
 
 Four simultaneous earcons is the practical upper limit for a listener to
 parse distinct audio streams.
+
+For prompt-conditioned evaluation, this filter is bypassed because the target
+class comes from the user query rather than from generic scene ranking.
 
 ---
 
@@ -111,3 +130,20 @@ if peak > 1.0:
 | Distance proxy | Normalised bbox area | No depth sensor required |
 | Earcon duration | 150 ms sine burst | Short enough to update every frame; long enough to be audible |
 | Visualisation | Off by default | Avoids distracting sighted operators during BLV user testing |
+
+## 5. Evaluation Procedure
+
+The prompt-conditioned baseline is evaluated against fixture files containing:
+- image name + user prompt
+- image name + target label + ground-truth location bucket
+
+The implementation in `src/query_eval.py` evaluates each example as follows:
+1. Parse the target object from the prompt.
+2. Normalize the object name to a supported YOLO baseline class if possible.
+3. Run YOLOv8n on the image.
+4. Keep detections whose class matches the normalized target label.
+5. Return the 3x3 grid location of the highest-confidence match, or `N/A`.
+6. Compare the predicted location against the annotated ground truth.
+
+This makes the benchmark closer to real usage than open-ended scene detection,
+because success is defined by answering a user's specific query.

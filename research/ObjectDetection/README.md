@@ -2,6 +2,12 @@
 
 Detects objects in a live webcam stream using YOLOv8n and maps each object's horizontal position to a stereo audio earcon, so a blind/low-vision user can locate objects by sound.
 
+The repo also includes a prompt-conditioned baseline evaluation for queries like
+`where is the cup?`, using the policy:
+- If the prompt maps to a supported COCO class, run YOLO and report the matched object's location.
+- If the prompt maps to a supported class but no matching detection is found, return `N/A`.
+- If the prompt does not map to a supported baseline class, return `N/A`.
+
 Runs fully on-device (no network) at ≥10 FPS on Ubuntu CPU.
 
 ## Requirements
@@ -58,6 +64,9 @@ bash demo.sh --conf 0.4           # lower confidence threshold
 ```bash
 python3 -m pytest test/ -v
 ```
+
+The prompt-conditioned baseline evaluator lives in `src/query_eval.py` and is
+covered by `test/test_query_eval.py`.
 
 ## Project Structure
 

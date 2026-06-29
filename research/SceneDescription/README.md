@@ -92,3 +92,40 @@ pytest test/ -v
 ```
 
 All 26 tests run offline — no camera, API keys, or Ollama instance required.
+
+## Evaluation
+
+`test/eval_outdoor.py` runs the full remote-VLM pipeline on static test images and scores each generated description against a one-sentence ground truth using an LLM judge (semantic similarity, 0.0–1.0). Results are written as `eval_<YYYYMMDD>_<NNN>.json` and `.html` to the fixture folder.
+
+### Fixture: outdoor (3 images)
+
+| Image | Scene | Score |
+|---|---|---|
+| `image_q1.png` | Quiet residential street with trees | 0.85 |
+| `image_b1.png` | Pedestrian crosswalk on a busy road | 0.85 |
+| `image_f1.png` | Front door of a house with green plants | 0.75 |
+
+**Result: PASS — 3/3 (mean score 0.82, threshold ≥ 0.70)**  
+Tested at commit `09d43a5` · 2026-06-29
+
+### Run the eval
+
+```bash
+# from research/SceneDescription/
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
+.venv/bin/python test/eval_outdoor.py
+```
+
+Ground truth is read from `test/fixtures/outdoor/scene_description_groundtruth.txt` (format: `filename: one sentence`). Add more fixture subfolders with the same file to extend coverage.
+
+### Scoring
+
+The LLM judge (claude-sonnet-4-6) compares the generated description to the ground truth and returns a score:
+
+| Score | Meaning |
+|---|---|
+| ≥ 0.70 | PASS — essential information conveyed |
+| 0.40–0.69 | Partial match — key elements missing |
+| < 0.40 | Fail — wrong or empty scene |
+
+> **Note:** The eval bypasses the pipeline's 5-second remote timeout so the full VLM output quality is visible. In live use, descriptions taking > 5s fall back to Ollama/LLaVA.

@@ -1,0 +1,6 @@
+IMG_4269.JPG: cup: middle-left
+IMG_4269.JPG: toothbrush: middle-middle
+IMG_4270.JPG: laptop: bottom-right
+IMG_4271.JPG: chair : middle-right
+IMG_4272.JPG: chair: middle-right
+IMG_4272.JPG: laptop: top-left
