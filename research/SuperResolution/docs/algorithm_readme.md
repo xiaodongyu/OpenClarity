@@ -60,14 +60,59 @@ rather than pixel-shuffle, at higher compute cost.
 
 Both models operate on the **Y (luma) channel only**:
 
-1. Convert BGR → YCrCb, split channels.
+1. Convert BGR → Y'CbCr, split channels.
 2. Run the SR network on Y.
-3. Upsample Cr/Cb via bicubic interpolation (`cv2.resize`, `INTER_CUBIC`).
+3. Upsample Cb/Cr via bicubic interpolation (`cv2.resize`, `INTER_CUBIC`).
 4. Merge and convert back to BGR.
 
 **Rationale**: human vision (and OCR-relevant edge structure) is dominated by
 luma; chroma can be upsampled cheaply without a perceptible quality loss. This
 roughly triples inference speed vs. running the network on all 3 channels.
+
+**Important**: step 1 uses the **digital, video-range ITU-R BT.601** Y'CbCr
+formula (`_bgr_to_ycbcr`/`_ycbcr_to_bgr` in `src/sr_model.py`) —
+`Y = 16 + (64.738R + 129.057G + 25.064B)/256`, range ≈16–235 — not OpenCV's
+`cv2.COLOR_BGR2YCrCb`, which is a *full-range* transform with a different
+scale/offset. This is the convention essentially all SR papers and public
+checkpoints (FSRCNN, ESPCN, EDSR, ...) use for the Y channel. Feeding an
+externally-pretrained checkpoint OpenCV's full-range Y channel instead
+measurably hurts PSNR — it was the first thing to check while validating the
+converted checkpoints in `src/convert_pretrained.py` (see below).
+
+---
+
+## 2.5 Pretrained Baseline Weights (`src/convert_pretrained.py`)
+
+Before any project-specific fine-tuning (`docs/finetuning_plan.md`), `src/weights/`
+ships FSRCNN (×2/×3/×4) and ESPCN (×3 only — not published upstream at ×4)
+checkpoints ported from the public
+[yjn870/FSRCNN-pytorch](https://github.com/yjn870/FSRCNN-pytorch) and
+[yjn870/ESPCN-pytorch](https://github.com/yjn870/ESPCN-pytorch) repos. Their
+architectures are numerically identical to ours (same default hyperparameters,
+same layer shapes) but organised into differently named submodules
+(`first_part`/`mid_part`/`last_part` vs. our `feature_extraction`/`shrink`/
+`mapping`/`expand`/`deconv` and `features`/`to_subpixel`), so `convert_pretrained.py`
+remaps state-dict keys 1:1 and loads with `strict=True` to catch any shape/key
+mismatch before saving.
+
+### Known pitfall: bicubic-kernel mismatch when verifying
+
+These checkpoints were trained on LR images generated with **PIL's `BICUBIC`
+filter**, not OpenCV's. FSRCNN/ESPCN — like most classical, non-blind SR
+nets — are sensitive to the *exact* downsampling kernel used to create their
+training LR data. Synthetically downsampling a test image with
+`cv2.INTER_CUBIC` (what `src/benchmark.py` and `src/train.py` use internally —
+fine there, since each is self-consistent end-to-end) and feeding that into an
+*externally pretrained* checkpoint makes it score **worse than bilinear**, even
+though the checkpoint itself is correct — a kernel-mismatch artifact, not a
+model defect. Measured on a 256×256 test image (`fsrcnn x3`): cv2-bicubic LR
+gave 20.56 dB (bilinear: 21.89 dB); PIL-bicubic LR gave 26.37 dB (bilinear:
+21.96 dB) — the same checkpoint, only the LR-generation kernel changed.
+
+`convert_pretrained.py`'s `verify_against_bilinear()` therefore generates its
+sanity-check LR with PIL's bicubic filter specifically. Any future fine-tuning
+must keep the LR-generation kernel consistent between whatever data a
+checkpoint is trained on and whatever it's evaluated on.
 
 ---
 
@@ -157,6 +202,8 @@ Results are written to a Markdown report (`write_report`) ranked by PSNR.
 | Default SR architecture | ESPCN | Cheapest per-pixel cost (all convs in LR space); best fit for real-time edge inference |
 | Alternative architecture | FSRCNN | Higher quality when compute budget allows; kept behind the same interface |
 | Color handling | Y-channel only, bicubic chroma | ~3× faster than 3-channel inference with no perceptible quality loss |
+| Y'CbCr convention | Digital/video-range BT.601 (not OpenCV's full-range `cv2.COLOR_BGR2YCrCb`) | Matches the convention used by the FSRCNN/ESPCN papers and public checkpoints; required for pretrained weights to perform correctly |
+| Baseline weights | Ported from yjn870's public FSRCNN/ESPCN PyTorch checkpoints | Working starting point before project-specific fine-tuning; architectures match ours exactly, only submodule naming differs |
 | Training data | DIV2K + text/label crops | General SR models underperform on small glyph edges, which matter most for this use case |
 | Loss function | L1 | More robust to outliers, preserves sharp edges better than L2 |
 | Deployment format | ONNX (+ optional INT8 quantization) | Portable across CPU/edge runtimes; quantization cuts latency/size without hard-locking a single inference engine |

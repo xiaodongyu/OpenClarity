@@ -67,6 +67,28 @@ def _build_espcn(scale: int, channels: int = 64):
 _BUILDERS = {"fsrcnn": _build_fsrcnn, "espcn": _build_espcn}
 
 
+def _bgr_to_ycbcr(img: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Digital (video-range) ITU-R BT.601 Y'CbCr, matching the convention used by
+    the FSRCNN/ESPCN papers and public checkpoints — NOT OpenCV's full-range
+    cv2.COLOR_BGR2YCrCb, which uses a different scale/offset and measurably hurts
+    PSNR when combined with weights trained under the video-range convention.
+    """
+    img = img.astype(np.float32)
+    b, g, r = img[..., 0], img[..., 1], img[..., 2]
+    y = 16.0 + (64.738 * r + 129.057 * g + 25.064 * b) / 256.0
+    cb = 128.0 + (-37.945 * r - 74.494 * g + 112.439 * b) / 256.0
+    cr = 128.0 + (112.439 * r - 94.154 * g - 18.285 * b) / 256.0
+    return y, cb, cr
+
+
+def _ycbcr_to_bgr(y: np.ndarray, cb: np.ndarray, cr: np.ndarray) -> np.ndarray:
+    r = 298.082 * y / 256.0 + 408.583 * cr / 256.0 - 222.921
+    g = 298.082 * y / 256.0 - 100.291 * cb / 256.0 - 208.120 * cr / 256.0 + 135.576
+    b = 298.082 * y / 256.0 + 516.412 * cb / 256.0 - 276.836
+    bgr = np.stack([b, g, r], axis=-1)
+    return np.clip(bgr, 0, 255).astype(np.uint8)
+
+
 class SRModel:
     """Inference wrapper around a lightweight SR network.
 
@@ -98,13 +120,9 @@ class SRModel:
     def upscale(self, img: np.ndarray) -> np.ndarray:
         import torch
 
-        ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
-        y, cr, cb = cv2.split(ycrcb)
+        y, cb, cr = _bgr_to_ycbcr(img)
         tensor = (
-            torch.from_numpy(y.astype(np.float32) / 255.0)
-            .unsqueeze(0)
-            .unsqueeze(0)
-            .to(self.device)
+            torch.from_numpy(y / 255.0).unsqueeze(0).unsqueeze(0).to(self.device)
         )
 
         start = time.perf_counter()
@@ -113,9 +131,8 @@ class SRModel:
         elapsed_ms = (time.perf_counter() - start) * 1000
         print(f"[sr_model] {self.arch} inference: {elapsed_ms:.1f} ms", file=sys.stderr)
 
-        y_hr = (out.squeeze(0).squeeze(0).clamp(0, 1).cpu().numpy() * 255).astype(np.uint8)
+        y_hr = out.squeeze(0).squeeze(0).clamp(0, 1).cpu().numpy() * 255.0
         h, w = y_hr.shape
-        cr_hr = cv2.resize(cr, (w, h), interpolation=cv2.INTER_CUBIC)
         cb_hr = cv2.resize(cb, (w, h), interpolation=cv2.INTER_CUBIC)
-        merged = cv2.merge([y_hr, cr_hr, cb_hr])
-        return cv2.cvtColor(merged, cv2.COLOR_YCrCb2BGR)
+        cr_hr = cv2.resize(cr, (w, h), interpolation=cv2.INTER_CUBIC)
+        return _ycbcr_to_bgr(y_hr, cb_hr, cr_hr)
