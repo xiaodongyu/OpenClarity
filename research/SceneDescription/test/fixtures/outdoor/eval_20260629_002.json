@@ -1,0 +1,42 @@
+{
+  "fixture": "outdoor",
+  "commit": "09d43a5",
+  "commit_full": "09d43a53d873f3ff0dc67481c64892debd17554e",
+  "commit_subject": "[eval] ObjectDetection home_scene \u2014 tested at 40b9572",
+  "commit_body": "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-29T02:44:47.475485+00:00",
+  "threshold": 0.7,
+  "total": 3,
+  "passed": 3,
+  "mean_score": 0.817,
+  "verdict": "PASS",
+  "images": [
+    {
+      "filename": "image_q1.png",
+      "ground_truth": "a quiet street in a nice neighborhood with lots of trees",
+      "generated": "A quiet residential street curves gently ahead, lined with large trees, street lamps, and well-maintained sidewalks on both sides. Two-story brick and stone homes with manicured lawns border the road, with no people or immediate obstacles in the path.",
+      "score": 0.85,
+      "rationale": "Both descriptions depict the same core scene \u2014 a quiet, pleasant residential street with abundant trees \u2014 with the generated version adding specific details (brick homes, street lamps, sidewalks, manicured lawns) that elaborate on but do not contradict the ground truth's 'nice neighborhood' characterization.",
+      "passed": true,
+      "elapsed_s": 9.342
+    },
+    {
+      "filename": "image_b1.png",
+      "ground_truth": "a pedestrian crosswalk on a busy road",
+      "generated": "You're on a busy urban street with several pedestrians crossing a marked crosswalk directly ahead \u2014 walk with caution as people are moving in both directions. Heavy vehicle traffic including buses, cars, and a taxi lines the road, with shops including a **Coffee House**, **Subway**, and **Chemist** visible along the sidewalks, and a pedestrian signal displaying a countdown timer nearby.",
+      "score": 0.85,
+      "rationale": "Both descriptions capture the same essential scene of a pedestrian crosswalk on a busy road, with the generated description adding significant detail (shops, vehicles, signal timer) that enriches but does not contradict the core elements of the ground truth.",
+      "passed": true,
+      "elapsed_s": 4.181
+    },
+    {
+      "filename": "image_f1.png",
+      "ground_truth": "a front door of a house surrounded by green plants",
+      "generated": "A brick house entrance is directly ahead, featuring a teal/dark blue front door decorated with a floral wreath, with a doormat reading **\"Home Sweet Home\"** at the base. The path leads up a stone walkway with steps, flanked by potted plants and colorful flowers, with a wooden bench to the right of the door.",
+      "score": 0.75,
+      "rationale": "Both descriptions depict a residential front door surrounded by plants/flowers, with the generated description providing much richer detail (brick house, teal door, wreath, doormat, stone walkway, bench) that is consistent with but more specific than the ground truth's core elements.",
+      "passed": true,
+      "elapsed_s": 9.843
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "fixture": "medicine_package",
+  "commit": "2078320",
+  "commit_full": "20783200b85d92ae5104fb650fc155a0aea528cf",
+  "commit_subject": "[SuperResolution] Add low-res input thumbnail to eval report filmstrip",
+  "commit_body": "Shows the actual downscaled (before-SR) input next to ground truth in\neach card, upscaled with nearest-neighbor so its blockiness stays\nvisible rather than being smoothed away -- makes the before/after\ncomparison against each method's output legible at a glance.\n\nCo-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>",
+  "timestamp": "2026-07-01T15:33:15.887438+00:00",
+  "total": 6,
+  "improved": 6,
+  "baseline_only_cards": 3,
+  "verdict": "PASS",
+  "cards": [
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 31.910924982478136,
+          "ssim": 0.9654914035823314,
+          "latency_ms": 48.94155400052114
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 28.673598371158796,
+          "ssim": 0.9391396851276084,
+          "latency_ms": 8.20056599968666
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 27.897425829848046,
+          "ssim": 0.9311832547489632,
+          "latency_ms": 0.31115599995246157
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 18.414827500079827,
+          "ssim": 0.6651987736846727,
+          "latency_ms": 35.333744999661576
+        }
+      ]
+    },
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 25.75021775787424,
+          "ssim": 0.8882449775166249,
+          "latency_ms": 14.896743000463175
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 23.83430549497047,
+          "ssim": 0.8370232682922367,
+          "latency_ms": 3.946761999941373
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 23.077451117833384,
+          "ssim": 0.8169233911574133,
+          "latency_ms": 0.18311599978915183
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 18.8765374775263,
+          "ssim": 0.6021966047205101,
+          "latency_ms": 22.794704000261845
+        }
+      ]
+    },
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 8,
+      "improved_over_bilinear": null,
+      "best_method": null,
+      "methods": [
+        {
+          "method": "adaptive_sharpen_x8",
+          "psnr": 19.553393110159988,
+          "ssim": 0.6644847904927254,
+          "latency_ms": 4.232195999975374
+        },
+        {
+          "method": "bilinear_x8",
+          "psnr": 19.40793361892069,
+          "ssim": 0.6588985277811881,
+          "latency_ms": 0.14546300008078106
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 34.9850617228219,
+          "ssim": 0.9696476891407901,
+          "latency_ms": 29.045551999843155
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 30.56934790469375,
+          "ssim": 0.9499662012417465,
+          "latency_ms": 3.980425000008836
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 28.5336923202491,
+          "ssim": 0.9388444683572035,
+          "latency_ms": 0.335695000103442
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 21.927132210027168,
+          "ssim": 0.6917396412316772,
+          "latency_ms": 38.1801240000641
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 28.214351741777904,
+          "ssim": 0.9089496304861332,
+          "latency_ms": 8.271849999800907
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 24.32699144229123,
+          "ssim": 0.8656633154017798,
+          "latency_ms": 5.404870000347728
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 23.084872583968064,
+          "ssim": 0.8474284598945093,
+          "latency_ms": 0.15179499951045727
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 21.862590993120044,
+          "ssim": 0.6119784683757288,
+          "latency_ms": 13.052500000412692
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 8,
+      "improved_over_bilinear": null,
+      "best_method": null,
+      "methods": [
+        {
+          "method": "adaptive_sharpen_x8",
+          "psnr": 18.904742126967435,
+          "ssim": 0.7428534354043632,
+          "latency_ms": 5.2010169993081945
+        },
+        {
+          "method": "bilinear_x8",
+          "psnr": 18.73385044882745,
+          "ssim": 0.7395868105004647,
+          "latency_ms": 0.13158999990992015
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 39.29532481599867,
+          "ssim": 0.9807598571507008,
+          "latency_ms": 33.71540799980721
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 35.53937281129376,
+          "ssim": 0.9709093662216189,
+          "latency_ms": 0.15963999976520427
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 35.26782045921715,
+          "ssim": 0.9711891247953657,
+          "latency_ms": 3.3870580000439077
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 21.94905622119163,
+          "ssim": 0.7245903023591014,
+          "latency_ms": 31.467562000216276
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 32.146859196570894,
+          "ssim": 0.9356755412901955,
+          "latency_ms": 8.352220999768178
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 30.427833902278774,
+          "ssim": 0.9283670917927898,
+          "latency_ms": 3.95289900006901
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 29.42040664829209,
+          "ssim": 0.9244118422831388,
+          "latency_ms": 0.16700099968147697
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 21.41875605728812,
+          "ssim": 0.6076092428466235,
+          "latency_ms": 13.634076000016648
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 8,
+      "improved_over_bilinear": null,
+      "best_method": null,
+      "methods": [
+        {
+          "method": "adaptive_sharpen_x8",
+          "psnr": 23.714718691909326,
+          "ssim": 0.8101268913400957,
+          "latency_ms": 4.009508000308415
+        },
+        {
+          "method": "bilinear_x8",
+          "psnr": 23.44796402129368,
+          "ssim": 0.8086129135784771,
+          "latency_ms": 0.14278399976319633
+        }
+      ]
+    }
+  ]
+}

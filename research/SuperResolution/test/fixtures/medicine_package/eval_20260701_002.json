@@ -1,0 +1,337 @@
+{
+  "fixture": "medicine_package",
+  "commit": "74f294f",
+  "commit_full": "74f294fb983c98b51052d0015ba2876c830f829c",
+  "commit_subject": "[eval] SuperResolution medicine_package \u2014 tested at d056362",
+  "commit_body": "9/9 image x scale combinations (3 photos x scales 2/3/4) improved over\nbilinear PSNR using the pretrained FSRCNN (x2/x3/x4) and ESPCN (x3)\ncheckpoints from #27. Best per-card margin over bilinear ranged from\n~2 dB (x4) to ~4 dB (x2).\n\nAlso surfaces a finding worth following up: hybrid mode (SR output +\nenhance()) scored 7-14 dB lower than the SR model alone on every card\n-- enhance()'s fixed sharpening strength, tuned for the blurry\nbilinear-only fallback path, over-sharpens an already-sharp SR\nreconstruction. Documented in docs/algorithm_readme.md \u00a76.\n\nCo-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>",
+  "timestamp": "2026-07-01T15:22:35.004711+00:00",
+  "total": 9,
+  "improved": 9,
+  "verdict": "PASS",
+  "cards": [
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 35.69688592434549,
+          "ssim": 0.9454335422391728,
+          "latency_ms": 122.5424739996015
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 33.02828497819816,
+          "ssim": 0.9269336445702948,
+          "latency_ms": 26.722734999566455
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 31.88579439305134,
+          "ssim": 0.9192982632938003,
+          "latency_ms": 0.330738999764435
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 21.768888417729535,
+          "ssim": 0.6530464679655659,
+          "latency_ms": 139.0485179999814
+        }
+      ]
+    },
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 3,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x3",
+      "methods": [
+        {
+          "method": "fsrcnn_x3",
+          "psnr": 30.8005832601919,
+          "ssim": 0.8978814246712088,
+          "latency_ms": 56.13290000019333
+        },
+        {
+          "method": "espcn_x3",
+          "psnr": 30.380217503939484,
+          "ssim": 0.9003668963877058,
+          "latency_ms": 31.03029600060836
+        },
+        {
+          "method": "adaptive_sharpen_x3",
+          "psnr": 29.34825966813,
+          "ssim": 0.8887765674410406,
+          "latency_ms": 11.995925000519492
+        },
+        {
+          "method": "bilinear_x3",
+          "psnr": 28.59044586582798,
+          "ssim": 0.8806809608960469,
+          "latency_ms": 0.2968620001411182
+        },
+        {
+          "method": "espcn_x3_hybrid",
+          "psnr": 21.65848042652435,
+          "ssim": 0.6717995368730887,
+          "latency_ms": 48.35508700034552
+        },
+        {
+          "method": "fsrcnn_x3_hybrid",
+          "psnr": 21.546601718067986,
+          "ssim": 0.6123681384462957,
+          "latency_ms": 69.70536199969501
+        }
+      ]
+    },
+    {
+      "image": "IMG_4255.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 28.767363327339655,
+          "ssim": 0.8703777086615524,
+          "latency_ms": 35.943730999861145
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 27.10504365011097,
+          "ssim": 0.853582256633569,
+          "latency_ms": 11.699877999490127
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 26.48777295635415,
+          "ssim": 0.8449854556790509,
+          "latency_ms": 0.2708470001380192
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 21.34600894808833,
+          "ssim": 0.6049046628605296,
+          "latency_ms": 61.987560000488884
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 36.89362257863719,
+          "ssim": 0.9243641624958482,
+          "latency_ms": 121.17460499939625
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 34.361429845708294,
+          "ssim": 0.9083437483999803,
+          "latency_ms": 18.240092999803892
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 32.746843294948725,
+          "ssim": 0.9000609725007375,
+          "latency_ms": 0.32737099991209107
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 23.836017492761236,
+          "ssim": 0.6271294411844338,
+          "latency_ms": 140.70089800043206
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 3,
+      "improved_over_bilinear": true,
+      "best_method": "espcn_x3",
+      "methods": [
+        {
+          "method": "espcn_x3",
+          "psnr": 32.2293897721947,
+          "ssim": 0.880179841506421,
+          "latency_ms": 28.89111700005742
+        },
+        {
+          "method": "fsrcnn_x3",
+          "psnr": 32.151916305611024,
+          "ssim": 0.8765235660204338,
+          "latency_ms": 53.47621600049024
+        },
+        {
+          "method": "adaptive_sharpen_x3",
+          "psnr": 31.013076127532372,
+          "ssim": 0.874811152800884,
+          "latency_ms": 12.865448000411561
+        },
+        {
+          "method": "bilinear_x3",
+          "psnr": 29.5614212621185,
+          "ssim": 0.8640757387388287,
+          "latency_ms": 0.2941009997812216
+        },
+        {
+          "method": "espcn_x3_hybrid",
+          "psnr": 23.15003785722743,
+          "ssim": 0.6569228708829927,
+          "latency_ms": 52.80877000041073
+        },
+        {
+          "method": "fsrcnn_x3_hybrid",
+          "psnr": 22.96814658536833,
+          "ssim": 0.5426350400330544,
+          "latency_ms": 77.56691000031424
+        }
+      ]
+    },
+    {
+      "image": "IMG_4256.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 31.05571010362965,
+          "ssim": 0.8533069039463835,
+          "latency_ms": 47.84748100064462
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 28.401579409472802,
+          "ssim": 0.8394996039216466,
+          "latency_ms": 20.487289999437053
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 27.2541276019614,
+          "ssim": 0.827943805504445,
+          "latency_ms": 0.2798390005409601
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 22.96364049354777,
+          "ssim": 0.5519030445369334,
+          "latency_ms": 59.662361999471614
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 2,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x2",
+      "methods": [
+        {
+          "method": "fsrcnn_x2",
+          "psnr": 38.455995983769995,
+          "ssim": 0.9321047917364155,
+          "latency_ms": 127.08212500001537
+        },
+        {
+          "method": "adaptive_sharpen_x2",
+          "psnr": 37.559266604706664,
+          "ssim": 0.9205067741531794,
+          "latency_ms": 24.784960000033607
+        },
+        {
+          "method": "bilinear_x2",
+          "psnr": 37.290548958699944,
+          "ssim": 0.9169652894831583,
+          "latency_ms": 0.38538099943252746
+        },
+        {
+          "method": "fsrcnn_x2_hybrid",
+          "psnr": 25.808325907151566,
+          "ssim": 0.6678685707856511,
+          "latency_ms": 125.82605699935812
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 3,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x3",
+      "methods": [
+        {
+          "method": "fsrcnn_x3",
+          "psnr": 36.48621095321731,
+          "ssim": 0.9018912857963651,
+          "latency_ms": 54.8652570005288
+        },
+        {
+          "method": "espcn_x3",
+          "psnr": 36.3476522148831,
+          "ssim": 0.905328534026301,
+          "latency_ms": 37.73993699996936
+        },
+        {
+          "method": "adaptive_sharpen_x3",
+          "psnr": 35.79024210897223,
+          "ssim": 0.8987937696411332,
+          "latency_ms": 12.133962000007159
+        },
+        {
+          "method": "bilinear_x3",
+          "psnr": 35.267852104967005,
+          "ssim": 0.8960009324399835,
+          "latency_ms": 0.3090579994022846
+        },
+        {
+          "method": "espcn_x3_hybrid",
+          "psnr": 26.69543899577633,
+          "ssim": 0.7300788333547508,
+          "latency_ms": 49.7919470008128
+        },
+        {
+          "method": "fsrcnn_x3_hybrid",
+          "psnr": 25.56076155610576,
+          "ssim": 0.6035787922220947,
+          "latency_ms": 66.7017460000352
+        }
+      ]
+    },
+    {
+      "image": "IMG_4257.JPG",
+      "scale": 4,
+      "improved_over_bilinear": true,
+      "best_method": "fsrcnn_x4",
+      "methods": [
+        {
+          "method": "fsrcnn_x4",
+          "psnr": 34.713402147153964,
+          "ssim": 0.8811372207843549,
+          "latency_ms": 33.86429300007876
+        },
+        {
+          "method": "adaptive_sharpen_x4",
+          "psnr": 34.08877123137457,
+          "ssim": 0.8812119069246296,
+          "latency_ms": 13.339223999537353
+        },
+        {
+          "method": "bilinear_x4",
+          "psnr": 33.43423577931604,
+          "ssim": 0.8784443443899494,
+          "latency_ms": 0.23755199981678743
+        },
+        {
+          "method": "fsrcnn_x4_hybrid",
+          "psnr": 25.288787041317825,
+          "ssim": 0.6095268512647197,
+          "latency_ms": 53.745184000035806
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "fixture": "home_scene",
+  "commit": "6aaa3f8",
+  "commit_full": "6aaa3f8525ee552e12d348d1974eb0cc512bd9a5",
+  "commit_subject": "[ObjectDetection] Add home_scene eval harness with 3x3 grid HTML report",
+  "commit_body": "- src/query_eval.py: prompt-conditioned YOLO locator, returns 3x3 grid\n  position (top/middle/bottom \u00d7 left/middle/right) or N/A; QueryResult\n  now includes bbox for visual annotation\n- test/eval_home_scene.py: eval script writing eval_YYYYMMDD_NNN.json +\n  .html; HTML embeds annotated images with 3x3 grid overlay, detected\n  bbox, and per-query match verdict\n- test/test_query_eval.py: unit tests for query parsing, location mapping,\n  and evaluate_queries pipeline\n- test/fixtures/home_scene/: 4 real photos + prompt/groundtruth txt files\n- .gitignore: exclude *.pt model weights\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+  "timestamp": "2026-06-29T01:59:54.213602+00:00",
+  "total": 6,
+  "correct": 3,
+  "accuracy": 0.5,
+  "verdict": "NEEDS IMPROVEMENT",
+  "images": [
+    {
+      "image_name": "IMG_4269.JPG",
+      "prompt": "where is the cup?",
+      "target_label": "cup",
+      "predicted_location": "middle-left",
+      "expected_location": "middle-left",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        588,
+        1615,
+        1208,
+        2331
+      ]
+    },
+    {
+      "image_name": "IMG_4269.JPG",
+      "prompt": "where is the toothbrush?",
+      "target_label": "toothbrush",
+      "predicted_location": "N/A",
+      "expected_location": "middle-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": null
+    },
+    {
+      "image_name": "IMG_4270.JPG",
+      "prompt": "where is the laptop?",
+      "target_label": "laptop",
+      "predicted_location": "bottom-right",
+      "expected_location": "bottom-right",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        2212,
+        1398,
+        3622,
+        2859
+      ]
+    },
+    {
+      "image_name": "IMG_4271.JPG",
+      "prompt": "where is the chair?",
+      "target_label": "chair",
+      "predicted_location": "middle-right",
+      "expected_location": "bottom-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": [
+        1958,
+        362,
+        3698,
+        2993
+      ]
+    },
+    {
+      "image_name": "IMG_4272.JPG",
+      "prompt": "where is the chair?",
+      "target_label": "chair",
+      "predicted_location": "middle-right",
+      "expected_location": "bottom-middle",
+      "is_supported": true,
+      "is_correct": false,
+      "bbox": [
+        1626,
+        101,
+        3810,
+        3008
+      ]
+    },
+    {
+      "image_name": "IMG_4272.JPG",
+      "prompt": "where is the laptop?",
+      "target_label": "laptop",
+      "predicted_location": "top-left",
+      "expected_location": "top-left",
+      "is_supported": true,
+      "is_correct": true,
+      "bbox": [
+        91,
+        404,
+        1431,
+        1437
+      ]
+    }
+  ]
+}
