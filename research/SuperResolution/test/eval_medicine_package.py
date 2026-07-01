@@ -227,9 +227,9 @@ def _b64_jpeg(img) -> str:
     return base64.b64encode(bytes(buf)).decode()
 
 
-def _thumbnail(img, width=200):
+def _thumbnail(img, width=200, interpolation=cv2.INTER_AREA):
     h, w = img.shape[:2]
-    return cv2.resize(img, (width, int(h * width / w)), interpolation=cv2.INTER_AREA)
+    return cv2.resize(img, (width, int(h * width / w)), interpolation=interpolation)
 
 
 def _render_card(image: str, scale: int, rows: list[dict]) -> str:
@@ -239,6 +239,8 @@ def _render_card(image: str, scale: int, rows: list[dict]) -> str:
     match_text = "Improved" if is_improved else "No improvement"
 
     hr = rows[0]["hr"]
+    lr = rows[0]["lr"]
+    lh, lw = lr.shape[:2]
 
     lines = [
         "",
@@ -250,6 +252,7 @@ def _render_card(image: str, scale: int, rows: list[dict]) -> str:
         '    <div class="card-body">',
         '      <div class="filmstrip">',
         f'        <div class="thumb baseline"><img src="data:image/jpeg;base64,{_b64_jpeg(_thumbnail(hr))}" alt="ground truth"><div class="caption"><span class="method-name">ground truth</span></div></div>',
+        f'        <div class="thumb baseline"><img src="data:image/jpeg;base64,{_b64_jpeg(_thumbnail(lr, interpolation=cv2.INTER_NEAREST))}" alt="low-res input (before)"><div class="caption"><span class="method-name">low-res input</span><span class="metric">{lw}&times;{lh} &mdash; before SR</span></div></div>',
     ]
     for r in rows:
         cls = "best" if r["method"] == best_method else ("baseline" if r["method"].startswith(_BASELINE_PREFIXES) else "")
