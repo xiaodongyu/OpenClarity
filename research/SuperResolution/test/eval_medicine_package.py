@@ -68,11 +68,21 @@ def _git(cmd: list[str]) -> str:
         return ""
 
 
+def _is_dirty() -> bool:
+    """True if there are uncommitted changes -- including to this eval script
+    itself. Commit first, then run the eval: otherwise the commit stamped in
+    the report describes code that predates whatever actually produced it."""
+    return bool(_git(["status", "--porcelain"]))
+
+
 def _commit_info() -> dict:
     short = _git(["rev-parse", "--short", "HEAD"])
     full = _git(["rev-parse", "HEAD"])
     subj = _git(["log", "-1", "--format=%s"])
     body = _git(["log", "-1", "--format=%b"])
+    if _is_dirty():
+        short += "-dirty"
+        subj += "  [WARNING: uncommitted changes present at eval time]"
     return {"commit": short, "commit_full": full, "commit_subject": subj, "commit_body": body}
 
 
